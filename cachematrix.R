@@ -13,3 +13,21 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
 }
+
+# A a special "vector" (list) contains funtion to
+# - get/set the value of vector
+# - get/set the value of mean
+makeVector <- function(x = numeric()) {
+    m <- NULL
+    set <- function(y) {
+        x <<- y
+        m <<- NULL
+    }
+    get <- function() x
+    setmean <- function(mean) m <<- mean
+    getmean <- function() m
+    list(set = set, get = get,
+        setmean = setmean,
+        getmean = getmean
+    )
+}
