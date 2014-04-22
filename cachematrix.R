@@ -14,7 +14,7 @@ cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
 }
 
-# A a special "vector" (list) contains funtion to
+# A list contains funtion to
 # - get/set the value of vector
 # - get/set the value of mean
 makeVector <- function(x = numeric()) {
@@ -30,4 +30,17 @@ makeVector <- function(x = numeric()) {
         setmean = setmean,
         getmean = getmean
     )
+}
+
+# Calculated mean and stored in cache
+cachemean <- function(x, ...) {
+    m <- x$getmean()
+    if(!is.null(m)) {
+        message("getting cached data")
+        return(m)
+    }
+    data <- x$get()
+    m <- mean(data, ...)
+    x$setmean(m)
+    m
 }
