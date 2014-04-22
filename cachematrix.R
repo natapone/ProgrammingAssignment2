@@ -1,5 +1,24 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Compute the inverse of a square matrix and store to cache. Return solve if cache hit
+## Compare performance between cache and without cache
+
+## USAGE ##
+# > source("cachematrix.R")
+# > cache_profiler()
+
+# Compare caching performance
+cache_profiler <- function(size = 1000, seed=123) {
+    inv_m <- genInvMatrix(size = size)
+    message("Create matrix ", size , " * ", size)
+    c <- makeCacheMatrix(inv_m)
+    
+    message("Solve inverse matrix without cache")
+    t1 <- system.time(cacheSolve(c))
+    print(t1)
+    
+    message("Solve inverse matrix with cache")
+    t2 <- system.time(cacheSolve(c))
+    print(t2)
+}
 
 # A list contains funtion to
 # - get/set the value of matrix
